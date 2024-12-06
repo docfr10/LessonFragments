@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.lesson_fragments.databinding.FragmentBlankBinding
@@ -27,15 +25,12 @@ class BlankFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val textView: TextView = view.findViewById(R.id.textView)
-        val button: Button = view.findViewById(R.id.button)
-
         val sharedPrefs = this.activity?.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         sharedPrefs?.edit()?.putString("key", "value")?.apply()
-        textView.text = sharedPrefs?.getString("key", "")
+        binding.textView.text = sharedPrefs?.getString("key", "")
 
-        button.setOnClickListener {
+        binding.button.setOnClickListener {
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.constraint, BlankFragment()).commit()
 

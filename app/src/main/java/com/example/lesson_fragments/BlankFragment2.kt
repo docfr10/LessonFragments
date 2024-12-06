@@ -1,10 +1,12 @@
 package com.example.lesson_fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +37,22 @@ class BlankFragment2 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_blank2, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<TextView>(R.id.textView3)?.setOnClickListener {
+            // Заменяем текущий фрагмент на новый
+            val newFragment = BlankFragment()  // Новый фрагмент, который мы будем показывать
+            val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+
+            // Применяем замену фрагмента
+            fragmentTransaction.replace(R.id.fragmentContainerView2, newFragment)
+            fragmentTransaction.addToBackStack(null)  // Добавляем в стек, чтобы можно было вернуться
+            fragmentTransaction.commit()
+        }
+
     }
 
     companion object {
